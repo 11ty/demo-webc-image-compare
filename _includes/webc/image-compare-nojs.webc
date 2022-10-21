@@ -1,0 +1,120 @@
+<template webc:root :id="uid" aria-label="Compare two images">
+	<template>
+		<div class="slider">
+			<label :for="uid + '-slider'" class="visually-hidden">
+				How much of the image do you want to be hidden?
+			</label>
+			<input type="range" :value="value" :aria-controls="uid" :id="uid + '-slider'">
+		</div>
+	</template>
+	<slot>Don’t forget the images!</slot>
+	<fieldset>
+		<legend class="visually-hidden">How much of the image do you want to be hidden?</legend>
+		<script webc:type="render" webc:is="template">
+		function() {
+			let radios = [];
+			let name = `${this.uid}-slider`;
+			let incrementBy = 20;
+			let selectedIndex = Math.floor(this.value / incrementBy) * incrementBy;
+
+			for(let j = 0, k = 100; j<=k; j+=incrementBy) {
+				let id = `${this.uid}_${j}`;
+				radios.push(`<label for="${id}">
+<input type="radio" name="${name}" id="${id}" value="${j}" aria-controls="${this.uid}"${selectedIndex === j ? " checked" : ""}>
+${j}%
+</label>`);
+			}
+			return radios.join("");
+		}
+		</script>
+	</fieldset>
+</template>
+
+<link rel="stylesheet" href="visually-hidden.css">
+
+<style webc:scoped>
+:host {
+	display: grid;
+	max-width: 20em;
+}
+:host:not(:defined) label {
+	display: inline-flex;
+	align-items: center;
+	white-space: nowrap;
+}
+:host label {
+	text-align: center;
+}
+:host input[type='range'] {
+	width: 100%;
+}
+:host fieldset,
+:host .slider,
+:host img {
+	display: block;
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	grid-area: 2/1;
+}
+:host fieldset,
+:host .slider {
+	z-index: 1;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+:host img:first-of-type {
+	clip-path: inset(0 0 0 var(--position));
+}
+:host fieldset {
+	display: none;
+	border: none;
+}
+@supports selector(:has(*)) {
+	:host fieldset {
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+		padding: 0;
+	}
+}
+</style>
+
+<style @html="`#${uid} { --position: ${value}%; }`"></style>
+
+<script webc:type="render" webc:is="style" webc:scoped>
+function() {
+	let styles = [];
+	for(let j = 0, k = 100; j<=k; j+=20) {
+		let id = `${this.uid}_${j}`;
+		styles.push(`:host:has(#${id}:checked) {
+	--position: ${j}%;
+}`);
+	}
+	return styles.join("");
+}
+</script>
+
+<script>
+window.customElements.define("image-compare-nojs", class extends HTMLElement {
+	connectedCallback() {
+		let {value} = this.querySelector(`:scope [type="radio"]:checked`);
+		let fieldset = this.querySelector(":scope fieldset");
+		let tmpl = this.querySelector(":scope template");
+		fieldset.replaceWith(tmpl.content);
+		tmpl.remove();
+
+		this.range = this.querySelector(":scope input[type='range']");
+		this.range.value = value;
+		this.oninput(value);
+		this.range.addEventListener("input", (e) => this.oninput(e.target.value));
+	}
+
+	oninput(value) {
+		requestAnimationFrame(() => {
+			this.style.setProperty("--position", `${value}%`);
+		});
+	}
+})
+</script>

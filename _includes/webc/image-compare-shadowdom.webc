@@ -1,0 +1,79 @@
+<template webc:root :id="uid" aria-label="Compare two images">
+	<!--
+	TODO
+	De-duplicate this template for re-use in many instances
+	See https://github.com/11ty/webc/issues/36
+	-->
+	<template>
+		<style webc:keep>
+		input[type='range'] {
+			width: 100%;
+		}
+		label {
+			position: absolute;
+			overflow: hidden;
+			white-space: nowrap;
+			height: 1px;
+			width: 1px;
+		}
+		.slider {
+			display: block;
+			width: 100%;
+			height: auto;
+			object-fit: cover;
+			grid-area: 2/1;
+			z-index: 1;
+			height: 100%;
+			display: flex;
+			align-items: center;
+		}
+		</style>
+
+		<div class="slider">
+			<label :for="uid + '-slider'">How much of the image do you want to be hidden?</label>
+			<input type="range" :value="value" :aria-controls="uid" :id="uid + '-slider'">
+		</div>
+
+		<slot webc:keep></slot>
+	</template>
+	<slot>Don’t forget the images!</slot>
+</template>
+
+<style webc:scoped>
+:host {
+	display: grid;
+	max-width: 20em;
+}
+:host img {
+	display: block;
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	grid-area: 2/1;
+}
+:host img:first-of-type {
+	clip-path: inset(0 0 0 var(--position));
+}
+</style>
+
+<style @html="`#${uid} { --position: ${value}%; }`"></style>
+
+<script>
+window.customElements.define("image-compare-shadowdom", class extends HTMLElement {
+	connectedCallback() {
+		// Polyfill Declarative Shadow Root
+		let tmpl = this.querySelector(":scope > template");
+		const shadowRoot = this.attachShadow({ mode: "open" });
+    shadowRoot.appendChild(tmpl.content.cloneNode(true));
+		tmpl.remove();
+
+		this.range = shadowRoot.querySelector(":scope input[type='range']");
+		this.range.addEventListener("input", (e) => {
+			let value = e.target.value;
+			requestAnimationFrame(() => {
+				this.style.setProperty("--position", `${value}%`);
+			});
+		})
+	}
+})
+</script>

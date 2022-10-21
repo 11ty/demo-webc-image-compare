@@ -1,0 +1,40 @@
+
+<div>
+	<label :for="this.uid">Quantity</label>
+	<button type="button" :id="this.uid" disabled>Add</button>
+	<output :for="this.uid" @html="this.value"></output>
+	<input type="hidden" :name="this.name" :value="this.value">
+</div>
+
+<style webc:scoped>
+:host {
+	font-size: 150%;
+}
+:host [disabled] {
+	cursor: not-allowed;
+}
+</style>
+
+<script>
+window.customElements.define("my-counter", class extends HTMLElement {
+	connectedCallback() {
+		let output = this.querySelector(":scope output");
+		let btn = this.querySelector(":scope button");
+		let input = this.querySelector(":scope input");
+
+		btn.removeAttribute("disabled");
+
+		let value = parseInt(output.innerText);
+		btn.addEventListener("click", (e) => {
+			value++;
+			input.value = value;
+			output.innerText = value;
+		});
+	}
+})
+</script>
+
+
+	<!-- <my-counter-number @value="1000" @name="hello-pe"></my-counter-number> -->
+
+	<!-- <compare-img @left="/javaskipped-a.png" @right="/javaskipped-b.png" @alt="The JavaSkipped Logo" @value="60"></compare-img> -->

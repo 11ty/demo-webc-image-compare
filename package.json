@@ -1,0 +1,31 @@
+{
+  "name": "@11ty/demo-webc-image-compare",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "start": "npx @11ty/eleventy --serve"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/11ty"
+  },
+  "author": {
+    "name": "Zach Leatherman",
+    "email": "zachleatherman@gmail.com",
+    "url": "https://zachleat.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/11ty/demo-webc-image-compare.git"
+  },
+  "bugs": "https://github.com/11ty/demo-webc-image-compare/issues",
+  "license": "MIT",
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.0-canary.16",
+    "@11ty/eleventy-plugin-webc": "^0.5.1"
+  }
+}
