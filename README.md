@@ -1,4 +1,4 @@
-# Eleventy WebC Image Comparison Demo
+# Eleventy WebC Image Comparison Component Demo
 
 A bunch of examples of progressively enhanced server-rendered image comparison web components using WebC.
 
