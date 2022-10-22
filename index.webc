@@ -15,7 +15,7 @@ layout: layout.webc
 	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800">
 </image-compare-disabled>
 
-<p>This version uses Shadow DOM to hide the slider pre-JS.</p>
+<p>This version uses a declarative Shadow DOM template for the slider: pre-JS it is hidden when DSM is not supported and disabled when DSM is supported.</p>
 <image-compare-shadowdom @value="40">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800">
 	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800">

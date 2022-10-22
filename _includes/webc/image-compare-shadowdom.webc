@@ -1,10 +1,10 @@
 <template webc:root :id="uid" aria-label="Compare two images">
 	<!--
-	TODO
-	De-duplicate this template for re-use in many instances
+	Can this even be de-duplicated without turning it into a <link rel="stylesheet"> (network request)?
+	Or does it require this to be littered in every instance.
 	See https://github.com/11ty/webc/issues/36
 	-->
-	<template>
+	<template shadowroot="open">
 		<style webc:keep>
 		input[type='range'] {
 			width: 100%;
@@ -31,11 +31,12 @@
 
 		<div class="slider">
 			<label :for="uid + '-slider'">How much of the image do you want to be hidden?</label>
-			<input type="range" :value="value" :aria-controls="uid" :id="uid + '-slider'">
+			<input type="range" :value="value" :aria-controls="uid" :id="uid + '-slider'" disabled>
 		</div>
 
 		<slot webc:keep></slot>
 	</template>
+
 	<slot>Don’t forget the images!</slot>
 </template>
 
@@ -62,12 +63,14 @@
 window.customElements.define("image-compare-shadowdom", class extends HTMLElement {
 	connectedCallback() {
 		// Polyfill Declarative Shadow Root
-		let tmpl = this.querySelector(":scope > template");
-		const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.appendChild(tmpl.content.cloneNode(true));
-		tmpl.remove();
+		if(!this.shadowRoot) {
+			let tmpl = this.querySelector(":scope > template[shadowroot]");
+			this.shadowRoot = this.attachShadow({ mode: "open" });
+			this.shadowRoot.appendChild(tmpl.content.cloneNode(true));
+		}
 
-		this.range = shadowRoot.querySelector(":scope input[type='range']");
+		this.range = this.shadowRoot.querySelector(":scope input[type='range']");
+		this.range.removeAttribute("disabled");
 		this.range.addEventListener("input", (e) => {
 			let value = e.target.value;
 			requestAnimationFrame(() => {
