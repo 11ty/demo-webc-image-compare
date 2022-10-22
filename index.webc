@@ -15,6 +15,15 @@ layout: layout.webc
 </is-land>
 
 <h2>Hidden</h2>
+
+<p><strong>Complexity Level: Low.</strong> This version uses CSS <code>:not(:defined)</code> to hide the range input before JS.</p>
+<is-land on:visible on:idle>
+	<image-compare-defined @value="20">
+		<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800">
+		<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800">
+	</image-compare-defined>
+</is-land>
+
 <p><strong>Complexity Level: Low.</strong> This version uses a <code>&lt;template&gt;</code> to hide the range input before JS.</p>
 <is-land on:visible on:idle>
 	<image-compare @value="20">

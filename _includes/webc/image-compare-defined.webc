@@ -1,12 +1,10 @@
 <template webc:root :id="uid" aria-label="Compare two images">
-	<template>
-		<div class="slider">
-			<label :for="uid + '-slider'" class="visually-hidden">
-				How much of the image do you want to be hidden?
-			</label>
-			<input type="range" :value="value" :aria-controls="uid" :id="uid + '-slider'">
-		</div>
-	</template>
+	<div class="slider">
+		<label :for="uid + '-slider'" class="visually-hidden">
+			How much of the image do you want to be hidden?
+		</label>
+		<input type="range" :value="value" :aria-controls="uid" :id="uid + '-slider'">
+	</div>
 	<slot>Don’t forget the images!</slot>
 </template>
 
@@ -16,6 +14,9 @@
 :host {
 	display: grid;
 	max-width: 20em;
+}
+:host:not(:defined) .slider {
+	display: none;
 }
 :host input[type='range'] {
 	width: 100%;
@@ -42,11 +43,8 @@
 <style @html="`#${uid} { --position: ${value}%; }`"></style>
 
 <script>
-window.customElements.define("image-compare", class extends HTMLElement {
+window.customElements.define("image-compare-defined", class extends HTMLElement {
 	connectedCallback() {
-		let tmpl = this.querySelector(":scope template");
-		tmpl.replaceWith(tmpl.content);
-
 		this.range = this.querySelector(":scope input[type='range']");
 		this.range.removeAttribute("disabled");
 
