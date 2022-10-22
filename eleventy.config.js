@@ -7,6 +7,7 @@ module.exports = function(eleventyConfig) {
 
 	eleventyConfig.setServerPassthroughCopyBehavior("copy");
 	eleventyConfig.addPassthroughCopy({"static/*": "/"});
+	eleventyConfig.addPassthroughCopy({"node_modules/@11ty/is-land/is-land.js": "/"});
 
 	eleventyConfig.setServerOptions({
 		domdiff: false

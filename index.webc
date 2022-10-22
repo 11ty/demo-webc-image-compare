@@ -3,27 +3,40 @@ layout: layout.webc
 ---
 <h1>WebC</h1>
 
-<p>This version uses a <code>&lt;template&gt;</code> to hide the slider pre-JS</p>
-<image-compare @value="20">
-	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800">
-	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800">
-</image-compare>
+<p>The examples below are in order of implementation complexity from least to most. All are using <a href="https://www.11ty.dev/docs/plugins/partial-hydration/"><code>&lt;is-land&gt;</code></a> to initialize on visible.</p>
 
-<p>This version has a disabled slider pre-hydration.</p>
-<image-compare-disabled @value="60">
-	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800">
-	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800">
-</image-compare-disabled>
+<h2>Disabled</h2>
+<p><strong>Complexity Level: Low.</strong> This version goes from disabled to enabled range input.</p>
+<is-land on:visible on:idle>
+	<image-compare-disabled @value="60">
+		<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800">
+		<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800">
+	</image-compare-disabled>
+</is-land>
 
-<p>This version uses a declarative Shadow DOM template for the slider: pre-JS it is hidden when DSM is not supported and disabled when DSM is supported.</p>
-<image-compare-shadowdom @value="40">
-	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800">
-	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800">
-</image-compare-shadowdom>
+<h2>Hidden</h2>
+<p><strong>Complexity Level: Low.</strong> This version uses a <code>&lt;template&gt;</code> to hide the range input before JS.</p>
+<is-land on:visible on:idle>
+	<image-compare @value="20">
+		<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800">
+		<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800">
+	</image-compare>
+</is-land>
 
-<p>This version uses <code>:has</code> and radios for a functional No-JS experience (and even synchronizes the value pre-JS and post-JS).</p>
-<!-- Demo idea: use is-land with on:interaction to show this pre and post hydration -->
-<image-compare-nojs @value="80">
-	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800">
-	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800">
-</image-compare-nojs>
+<h2>Shadow DOM</h2>
+<p><strong>Complexity Level: High.</strong> This version uses a declarative Shadow DOM template for the range input: pre-JS it is hidden when DSM is not supported and disabled when DSM is supported.</p>
+<is-land on:visible on:idle>
+	<image-compare-shadowdom @value="40">
+		<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800">
+		<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800">
+	</image-compare-shadowdom>
+</is-land>
+
+<h2>:has() and Radios</h2>
+<p><strong>Complexity Level: High.</strong> This version uses <code>:has</code> and radios for a functional No-JS experience (and even synchronizes the value pre-JS and post-JS).</p>
+<is-land on:visible on:idle>
+	<image-compare-nojs @value="80">
+		<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800">
+		<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800">
+	</image-compare-nojs>
+</is-land>

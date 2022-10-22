@@ -6,9 +6,18 @@
 		<meta name="description" content="">
 		<title></title>
 		<style @html="getCSS(page.url)"></style>
+		<style>
+		is-land {
+			display: block;
+			padding: 1em;
+			border-radius: .5em;
+			border: 2px solid lightblue;
+		}
+		</style>
 	</head>
 	<body>
 		<div @html="content" webc:nokeep></div>
+		<script type="module" src="/is-land.js"></script>
 		<script type="module" @html="getJS(page.url)"></script>
 	</body>
 </html>
