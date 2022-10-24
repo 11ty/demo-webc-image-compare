@@ -68,11 +68,17 @@ ${j}%
 	clip-path: inset(0 0 0 var(--position));
 }
 :host fieldset {
-	display: flex;
+	display: none;
 	width: 100%;
 	justify-content: space-between;
 	padding: 0;
 	border: none;
+}
+/* Only show the radios is :has is supported */
+@supports selector(:has(*)) {
+	:host fieldset {
+		display: flex;
+	}
 }
 </style>
 
