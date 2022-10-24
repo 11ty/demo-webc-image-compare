@@ -1,24 +1,44 @@
 ---
 layout: layout.webc
 ---
-<h1>Eleventy WebC Image Comparison Component Demos</h1>
+<h1>Progressive Enhancement Recipes using Eleventy WebC Image Comparison Components</h1>
+
+<p>Return to the <a href="https://github.com/11ty/demo-webc-image-compare">GitHub repository</a>.</p>
 
 <p>The examples below are in order of implementation complexity from least to most. All are using <a href="https://www.11ty.dev/docs/plugins/partial-hydration/"><code>&lt;is-land&gt;</code></a> to initialize <code>on:idle on:visible</code>.</p>
-<p>Return to the <a href="https://github.com/11ty/demo-webc-image-compare">GitHub repository</a>.</p>
 
 <p>Decision points:</p>
 <ul>
-	<li>Do you need the slider to be available pre-JS?</li>
+	<li>Do you want the control to be available pre-JS?</li>
 	<li>Do you want the slider to show both images pre-JS? (This will negatively impact your CLS)</li>
 	<li>If you want to show either the left or right images pre-JS use <code>@value="0"</code> or <code>@value="100"</code> respsectively.</li>
 	<li>Does this form input need to be a successful form control and submit to the server?</li>
 </ul>
 
-<h2>Disabled</h2>
+<h2>Always Enabled</h2>
 
 <ul>
 	<li><strong>Complexity Level: Low</strong></li>
-	<li>This version goes from disabled to enabled range input.</li>
+	<li>The range control is always enabled and synchronized to the display when JS initializes.</li>
+	<li>This has the potential for an uncanny valley in which the control is movable but the view is not updated!</li>
+</ul>
+
+<is-land on:visible on:idle>
+	<form method="get">
+		<image-compare-enabled @name="range-enabled" @value="50">
+			<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
+			<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
+		</image-compare-enabled>
+		<button type="submit">Submit the form</button>
+	</form>
+</is-land>
+
+<h2>Disabled until JavaScript</h2>
+
+<ul>
+	<li><strong>Complexity Level: Low</strong></li>
+	<li>This version uses JS to toggle the range input from disabled to enabled.</li>
+	<li>Disabling the control avoids the uncanny valley (in comparison to keeping it enabled) by communicating to the user that the control is not yet initialized.</p>
 </ul>
 
 <is-land on:visible on:idle>
@@ -31,7 +51,7 @@ layout: layout.webc
 	</form>
 </is-land>
 
-<h2>Hidden</h2>
+<h2>Hidden via CSS</h2>
 
 <ul>
 	<li><strong>Complexity Level: Low</strong></li>
@@ -48,30 +68,31 @@ layout: layout.webc
 	</form>
 </is-land>
 
+<h2>Hidden via JS Template</h2>
+
 <ul>
 	<li><strong>Complexity Level: Low</strong></li>
-	<li>This version uses a <code>&lt;template&gt;</code> to hide the range input before JS.</li>
+	<li>This version uses JS to swap in <code>&lt;template&gt;</code> content holding the range input.</li>
 </ul>
 
 <is-land on:visible on:idle>
 	<form method="get">
-		<image-compare @name="range-hiddentmpl" @value="50">
+		<image-compare-hidden @name="range-hiddentmpl" @value="50">
 			<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
 			<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
-		</image-compare>
+		</image-compare-hidden>
 		<button type="submit">Submit the form</button>
 	</form>
 </is-land>
 
-<h2>Shadow DOM</h2>
+<h2>Declarative Shadow DOM</h2>
 
 <ul>
 	<li><strong>Complexity Level: Moderate</strong></li>
-	<li>This version uses a Declarative Shadow DOM template for the range input.
-	<li>When Declarative Shadow DOM is supported, the range input is disabled pre-JS.</li>
-	<li>When <a href="https://caniuse.com/declarative-shadow-dom">Declarative Shadow DOM is <strong>not supported</strong></a>, the range input is hidden pre-JS.</li>
-	<li>One benefit of this approach is that we can some of the styles into Shadow DOM to have scoped styles for free!</li>
-	<li>Form control caveat: This version does not have a successful form control because it uses Shadow DOM.</li>
+	<li>This version uses Declarative Shadow DOM for the range input. Before JS, the range input is always enabled and synchronized to the display when JS runs.</li>
+	<li>When Declarative Shadow DOM is not supported, the polyfill is applied inline (it’s a few lines of code). Before JS, the range input is hidden.</li>
+	<li><em>Form control caveat</em>: This version does not have a successful form control because it uses Shadow DOM. This can be fixed with JS (but requires JS).</li>
+	<li>One benefit of this approach is that we can move some of the styles into Shadow DOM to scope those styles for free!</li>
 </ul>
 
 <is-land on:visible on:idle>

@@ -31,7 +31,7 @@
 
 		<div class="slider">
 			<label :for="uid + '-slider'">How much of the image do you want to be hidden?</label>
-			<input type="range" :name="name" :value="value" :aria-controls="uid" :id="uid + '-slider'" disabled>
+			<input type="range" :name="name" :value="value" :aria-controls="uid" :id="uid + '-slider'">
 		</div>
 
 		<slot webc:keep></slot>
@@ -71,13 +71,16 @@ window.customElements.define("image-compare-shadowdom", class extends HTMLElemen
 		}
 
 		this.range = root.querySelector("input[type='range']");
-		this.range.removeAttribute("disabled");
-		this.range.addEventListener("input", (e) => {
-			let value = e.target.value;
-			requestAnimationFrame(() => {
-				this.style.setProperty("--position", `${value}%`);
-			});
-		})
+		this.range.addEventListener("input", (e) => this.oninput(e.target.value));
+
+		// Synchronize the value if it changed before JS
+		this.oninput(this.range.value);
+	}
+
+	oninput(value) {
+		requestAnimationFrame(() => {
+			this.style.setProperty("--position", `${value}%`);
+		});
 	}
 })
 </script>

@@ -1,12 +1,10 @@
 <template webc:root :id="uid" aria-label="Compare two images">
-	<template>
-		<div class="slider">
-			<label :for="uid + '-slider'" class="visually-hidden">
-				How much of the image do you want to be hidden?
-			</label>
-			<input type="range" :name="name" :value="value" :aria-controls="uid" :id="uid + '-slider'">
-		</div>
-	</template>
+	<div class="slider">
+		<label :for="uid + '-slider'" class="visually-hidden">
+			How much of the image do you want to be hidden?
+		</label>
+		<input type="range" :name="name" :value="value" :aria-controls="uid" :id="uid + '-slider'">
+	</div>
 	<slot>Don’t forget the images!</slot>
 </template>
 
@@ -16,6 +14,9 @@
 :host {
 	display: grid;
 	max-width: 20em;
+}
+:host [disabled] {
+	cursor: not-allowed;
 }
 :host input[type='range'] {
 	width: 100%;
@@ -42,19 +43,19 @@
 <style @html="`#${uid} { --position: ${value}%; }`"></style>
 
 <script>
-window.customElements.define("image-compare", class extends HTMLElement {
+window.customElements.define("image-compare-enabled", class extends HTMLElement {
 	connectedCallback() {
-		let tmpl = this.querySelector(":scope template");
-		tmpl.replaceWith(tmpl.content);
-
 		this.range = this.querySelector(":scope input[type='range']");
-		this.range.removeAttribute("disabled");
+		this.range.addEventListener("input", (e) => this.oninput(e.target.value));
 
-		this.range.addEventListener("input", (e) => {
-			requestAnimationFrame(() => {
-				this.style.setProperty("--position", `${e.target.value}%`);
-			});
-		})
+		// Synchronize the value if it changed before JS
+		this.oninput(this.range.value);
+	}
+
+	oninput(value) {
+		requestAnimationFrame(() => {
+			this.style.setProperty("--position", `${value}%`);
+		});
 	}
 })
 </script>
