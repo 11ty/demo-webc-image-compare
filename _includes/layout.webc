@@ -13,6 +13,17 @@
 			border-radius: .5em;
 			border: 2px solid lightblue;
 		}
+		is-land h3:last-child {
+			margin-bottom: 0;
+		}
+		.columns {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1em;
+		}
+		.columns > * {
+			flex-basis: 20em;
+		}
 		</style>
 	</head>
 	<body>

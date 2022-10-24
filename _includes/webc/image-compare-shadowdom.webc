@@ -1,9 +1,4 @@
 <template webc:root :id="uid" aria-label="Compare two images">
-	<!--
-	Can this even be de-duplicated without turning it into a <link rel="stylesheet"> (network request)?
-	Or does it require this to be littered in every instance.
-	See https://github.com/11ty/webc/issues/36
-	-->
 	<template shadowroot="open">
 		<style webc:keep>
 		input[type='range'] {
@@ -62,6 +57,10 @@
 <script>
 customElements.define("image-compare-shadowdom", class extends HTMLElement {
 	connectedCallback() {
+		if(this.hasAttribute("disabled")) {
+			return;
+		}
+
 		// Polyfill Declarative Shadow Root
 		let root = this.shadowRoot;
 		if(!this.shadowRoot) {
