@@ -5,7 +5,7 @@ layout: layout.webc
 
 <p>Return to the <a href="https://github.com/11ty/demo-webc-image-compare">GitHub repository</a>.</p>
 
-<p>The examples below are in order of implementation complexity from least to most. All are using <a href="https://www.11ty.dev/docs/plugins/partial-hydration/"><code>&lt;is-land&gt;</code></a> to initialize <code>on:idle on:visible</code>.</p>
+<p>The examples below are in order of implementation complexity from least to most. All are using <a href="https://www.11ty.dev/docs/plugins/partial-hydration/"><code>is-land</code></a>, specifically <code>&lt;is-land on:idle on:visible&gt;</code>. The pre-JS experience is emulated using <code>&lt;is-land on:media="(max-width: 0px)"&gt;</code>.</p>
 
 <h2>Summary</h2>
 <ul>
