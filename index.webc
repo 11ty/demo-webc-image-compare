@@ -7,20 +7,22 @@ layout: layout.webc
 
 <p>The examples below are in order of implementation complexity from least to most. All are using <a href="https://www.11ty.dev/docs/plugins/partial-hydration/"><code>&lt;is-land&gt;</code></a> to initialize <code>on:idle on:visible</code>.</p>
 
-<p>Decision points:</p>
+<h2>Summary</h2>
 <ul>
-	<li>Do you want the control to be available pre-JS?</li>
-	<li>Do you want the slider to show both images pre-JS? (This will negatively impact your CLS)</li>
-	<li>If you want to show either the left or right images pre-JS use <code>@value="0"</code> or <code>@value="100"</code> respsectively.</li>
-	<li>Does this form input need to be a successful form control and submit to the server?</li>
+	<li>Do you want the slider to show both images pre-JS? This approach is not shown below. It can be solved with an entirely clientside Image Comparison component but it will negatively impact your Content Layout Shift score.</li>
+	<li>Do you want to show either the left or right image pre-JS? Use <code>@value="0"</code> or <code>@value="100"</code> respectively.</li>
+	<li>Do you want the form control to be interactive pre-JS? Go to the <a href="#enabled">Always Enabled</a> approach.</li>
+	<li>If so, do you want the pre-JS form control to be functional? See the <a href="#has-radios"><code>:has()</code> and Radios</a> approach.</li>
+	<li>Does this form input need to be a successful form control and submit to the server? The <a href="#dsd">ShadowDOM</a> example is the only one that doesn’t work with forms. This *could* be fixed with JS but is it worth it?.</li>
 </ul>
 
-<h2>Always Enabled</h2>
+<h2 id="enabled">Always Enabled</h2>
 
 <ul>
 	<li><strong>Complexity Level: Low</strong></li>
 	<li>The range control is always enabled and synchronized to the display when JS initializes.</li>
 	<li>This has the potential for an uncanny valley in which the control is movable but the view is not updated!</li>
+	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-enabled.webc">WebC source code</a></li>
 </ul>
 
 <is-land on:visible on:idle>
@@ -33,12 +35,13 @@ layout: layout.webc
 	</form>
 </is-land>
 
-<h2>Disabled until JavaScript</h2>
+<h2 id="disabled">Disabled until JavaScript</h2>
 
 <ul>
 	<li><strong>Complexity Level: Low</strong></li>
 	<li>This version uses JS to toggle the range input from disabled to enabled.</li>
 	<li>Disabling the control avoids the uncanny valley (in comparison to keeping it enabled) by communicating to the user that the control is not yet initialized.</p>
+	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-disabled.webc">WebC source code</a></li>
 </ul>
 
 <is-land on:visible on:idle>
@@ -51,11 +54,12 @@ layout: layout.webc
 	</form>
 </is-land>
 
-<h2>Hidden via CSS</h2>
+<h2 id="hidden-css">Hidden via CSS</h2>
 
 <ul>
 	<li><strong>Complexity Level: Low</strong></li>
 	<li>This version uses CSS <code>:not(:defined)</code> to hide the range input before JS.</li>
+	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-defined.webc">WebC source code</a></li>
 </ul>
 
 <is-land on:visible on:idle>
@@ -68,11 +72,12 @@ layout: layout.webc
 	</form>
 </is-land>
 
-<h2>Hidden via JS Template</h2>
+<h2 id="hidden-tmpl">Hidden via JS Template</h2>
 
 <ul>
 	<li><strong>Complexity Level: Low</strong></li>
 	<li>This version uses JS to swap in <code>&lt;template&gt;</code> content holding the range input.</li>
+	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-hidden.webc">WebC source code</a></li>
 </ul>
 
 <is-land on:visible on:idle>
@@ -85,7 +90,7 @@ layout: layout.webc
 	</form>
 </is-land>
 
-<h2>Declarative Shadow DOM</h2>
+<h2 id="dsd">Declarative Shadow DOM</h2>
 
 <ul>
 	<li><strong>Complexity Level: Moderate</strong></li>
@@ -93,6 +98,7 @@ layout: layout.webc
 	<li>When Declarative Shadow DOM is not supported, the polyfill is applied inline (it’s a few lines of code). Before JS, the range input is hidden.</li>
 	<li><em>Form control caveat</em>: This version does not have a successful form control because it uses Shadow DOM. This can be fixed with JS (but requires JS).</li>
 	<li>One benefit of this approach is that we can move some of the styles into Shadow DOM to scope those styles for free!</li>
+	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-shadowdom.webc">WebC source code</a></li>
 </ul>
 
 <is-land on:visible on:idle>
@@ -105,11 +111,13 @@ layout: layout.webc
 	</form>
 </is-land>
 
-<h2>:has() and Radios</h2>
+<h2 id="has-radios"><code>:has()</code> and Radios</h2>
 
 <ul>
 	<li><strong>Complexity Level: Moderate</strong></li>
-	<li>This version uses <code>:has</code> and radios for a functional No-JS experience (and even synchronizes the value pre-JS and post-JS).</li>
+	<li>This version uses <code>:has</code> and radios for a functional No-JS experience (and synchronizes the value pre-JS and post-JS).</li>
+	<li>If <code>:has()</code> is not supported, the inputs are still shown but do not update the rendered version. The pre-JS value is still maintained in post-JS rendering.</li>
+	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-nojs.webc">WebC source code</a></li>
 </ul>
 
 <is-land on:visible on:idle>
@@ -122,7 +130,7 @@ layout: layout.webc
 	</form>
 </is-land>
 
-<h2>Bonus: Opacity Slider</h2>
+<h2 id="opacity">Bonus: Opacity Slider</h2>
 
 <p>For fun you can change <code>clip-path: inset(0 0 0 var(--position));</code> to <code>opacity: var(--position);</code> on any of these components to have the slider vary opacity instead of clip amount.</p>
 

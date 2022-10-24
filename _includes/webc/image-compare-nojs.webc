@@ -68,16 +68,11 @@ ${j}%
 	clip-path: inset(0 0 0 var(--position));
 }
 :host fieldset {
-	display: none;
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	padding: 0;
 	border: none;
-}
-@supports selector(:has(*)) {
-	:host fieldset {
-		display: flex;
-		width: 100%;
-		justify-content: space-between;
-		padding: 0;
-	}
 }
 </style>
 
