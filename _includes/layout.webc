@@ -12,9 +12,10 @@
 			padding: 1em;
 			border-radius: .5em;
 			border: 2px solid lightblue;
+			overflow: hidden;
 		}
-		is-land h3:last-child {
-			margin-bottom: 0;
+		is-land h3:first-child {
+			margin-top: 0;
 		}
 		.columns {
 			display: flex;
@@ -24,7 +25,17 @@
 		.columns > * {
 			flex-basis: 20em;
 		}
+
+		pre {
+			font-size: 1.125em; /* 18px /16 */
+			border-radius: .5em;
+			border: 2px solid lightblue;
+		}
+		pre.language-html.language-html {
+			margin: 1em 0;
+		}
 		</style>
+		<link rel="stylesheet" href="https://unpkg.com/prismjs@1.29.0/themes/prism.css">
 	</head>
 	<body>
 		<div @html="content" webc:nokeep></div>

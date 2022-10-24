@@ -9,7 +9,7 @@ layout: layout.webc
 
 <h2>Summary</h2>
 <ul>
-	<li>Do you want the slider to show both images pre-JS? This approach is not shown below. It can be solved with an entirely clientside Image Comparison component but it will negatively impact your Content Layout Shift score.</li>
+	<li>If you want to show both images pre-JS, this can be solved with an entirely clientside Image Comparison component but it will negatively impact your Content Layout Shift score. This use case is not shown below.</li>
 	<li>Do you want to show either the left or right image pre-JS? Use <code>@value="0"</code> or <code>@value="100"</code> respectively.</li>
 	<li>Do you want the form control to be interactive pre-JS? Go to the <a href="#enabled">Always Enabled</a> approach.</li>
 	<li>If so, do you want the pre-JS form control to be functional? See the <a href="#has-radios"><code>:has()</code> and Radios</a> approach.</li>
@@ -25,24 +25,33 @@ layout: layout.webc
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-enabled.webc">WebC source code</a></li>
 </ul>
 
+<template webc:type="render">
+function() {
+	return this.helpers.highlight("html", `<image-compare-enabled @name="range-enabled" @value="50">
+	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
+	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
+</image-compare-enabled>`);
+}
+</template>	
+
 <div class="columns">
 	<is-land on:media="(max-width: 0px)">
 		<form method="get">
+			<h3>Before JavaScript <button type="submit">Form Submit</button></h3>
 			<image-compare-enabled @name="range-enabled" @value="50">
 				<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
 				<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
 			</image-compare-enabled>
-			<h3>Before JavaScript <button type="submit">Form Submit</button></h3>
 		</form>
 	</is-land>
 
 	<is-land on:visible on:idle>
 		<form method="get">
+			<h3>After JavaScript <button type="submit">Form Submit</button></h3>
 			<image-compare-enabled @name="range-enabled" @value="50">
 				<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
 				<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
 			</image-compare-enabled>
-			<h3>After JavaScript <button type="submit">Form Submit</button></h3>
 		</form>
 	</is-land>
 </div>
@@ -56,24 +65,33 @@ layout: layout.webc
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-disabled.webc">WebC source code</a></li>
 </ul>
 
+<template webc:type="render">
+function() {
+	return this.helpers.highlight("html", `<image-compare-disabled @name="range-disabled" @value="50">
+	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
+	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
+</image-compare-disabled>`);
+}
+</template>
+
 <div class="columns">
 	<is-land on:media="(max-width: 0px)">
 		<form method="get">
+			<h3>Before JavaScript <button type="submit">Form Submit</button></h3>
 			<image-compare-disabled @name="range-disabled" @value="50">
 				<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
 				<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
 			</image-compare-disabled>
-			<h3>Before JavaScript <button type="submit">Form Submit</button></h3>
 		</form>
 	</is-land>
 
 	<is-land on:visible on:idle>
 		<form method="get">
+			<h3>After JavaScript <button type="submit">Form Submit</button></h3>
 			<image-compare-disabled @name="range-disabled" @value="50">
 				<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
 				<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
 			</image-compare-disabled>
-			<h3>After JavaScript <button type="submit">Form Submit</button></h3>
 		</form>
 	</is-land>
 </div>
@@ -86,23 +104,33 @@ layout: layout.webc
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-defined.webc">WebC source code</a></li>
 </ul>
 
+<template webc:type="render">
+function() {
+	return this.helpers.highlight("html", `<image-compare-defined @name="range-hidden" @value="50">
+	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
+	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
+</image-compare-defined>`);
+}
+</template>
+	
+
 <div class="columns">
 	<is-land on:media="(max-width: 0px)">
 		<form method="get">
+			<h3>Before JavaScript <button type="submit">Form Submit</button></h3>
 			<image-compare-defined @name="range-hidden" @value="50">
 				<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
 				<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
 			</image-compare-defined>
-			<h3>Before JavaScript <button type="submit">Form Submit</button></h3>
 		</form>
 	</is-land>
 	<is-land on:visible on:idle>
 		<form method="get">
+			<h3>After JavaScript <button type="submit">Form Submit</button></h3>
 			<image-compare-defined @name="range-hidden" @value="50">
 				<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
 				<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
 			</image-compare-defined>
-			<h3>After JavaScript <button type="submit">Form Submit</button></h3>
 		</form>
 	</is-land>
 </div>
@@ -115,23 +143,32 @@ layout: layout.webc
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-hidden.webc">WebC source code</a></li>
 </ul>
 
+<template webc:type="render">
+function() {
+	return this.helpers.highlight("html", `<image-compare-hidden @name="range-hiddentmpl" @value="50">
+	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
+	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
+</image-compare-hidden>`);
+}
+</template>
+
 <div class="columns">
 	<is-land on:media="(max-width: 0px)">
 		<form method="get">
+			<h3>Before JavaScript <button type="submit">Form Submit</button></h3>
 			<image-compare-hidden @name="range-hiddentmpl" @value="50">
 				<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
 				<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
 			</image-compare-hidden>
-			<h3>Before JavaScript <button type="submit">Form Submit</button></h3>
 		</form>
 	</is-land>
 	<is-land on:visible on:idle>
 		<form method="get">
+			<h3>After JavaScript <button type="submit">Form Submit</button></h3>
 			<image-compare-hidden @name="range-hiddentmpl" @value="50">
 				<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
 				<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
 			</image-compare-hidden>
-			<h3>After JavaScript <button type="submit">Form Submit</button></h3>
 		</form>
 	</is-land>
 </div>
@@ -148,29 +185,39 @@ layout: layout.webc
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-shadowdom.webc">WebC source code</a></li>
 </ul>
 
+<template webc:type="render">
+function() {
+	return this.helpers.highlight("html", `<image-compare-shadowdom @name="range-shadowdom" @value="50">
+	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
+	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
+</image-compare-shadowdom>`);
+}
+</template>
+
 <div class="columns">
 	<is-land on:visible on:idle>
 		<form method="get">
+			<h3>Before JavaScript <button type="submit">Form Submit**</button></h3>
 			<!-- We use a one-off disabled attribute here to simulate pre-JS, is-land component renaming was messing with DSD -->
 			<image-compare-shadowdom disabled @name="range-shadowdom" @value="50">
 				<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
 				<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
 			</image-compare-shadowdom>
-			<h3>Before JavaScript <button type="submit">Form Submit**</button></h3>
 			**Form submit is not successful.
 		</form>
 	</is-land>
 	<is-land on:visible on:idle>
 		<form method="get">
+			<h3>After JavaScript <button type="submit">Form Submit**</button></h3>
 			<image-compare-shadowdom @name="range-shadowdom" @value="50">
 				<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
 				<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
 			</image-compare-shadowdom>
-			<h3>After JavaScript <button type="submit">Form Submit**</button></h3>
 			**Form submit is not successful.
 		</form>
 	</is-land>
 </div>
+
 
 <h2 id="has-radios"><code>:has()</code> and Radios</h2>
 
@@ -181,23 +228,32 @@ layout: layout.webc
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-nojs.webc">WebC source code</a></li>
 </ul>
 
+<template webc:type="render">
+function() {
+	return this.helpers.highlight("html", `<image-compare-nojs @name="range-radios" @value="50">
+	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
+	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
+</image-compare-nojs>`);
+}
+</template>
+
 <div class="columns">
 	<is-land on:media="(max-width: 0px)">
 		<form method="get">
+			<h3>Before JavaScript <button type="submit">Form Submit</button></h3>
 			<image-compare-nojs @name="range-radios" @value="50">
 				<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
 				<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
 			</image-compare-nojs>
-			<h3>Before JavaScript <button type="submit">Form Submit</button></h3>
 		</form>
 	</is-land>
 	<is-land on:visible on:idle>
 		<form method="get">
+			<h3>After JavaScript <button type="submit">Form Submit</button></h3>
 			<image-compare-nojs @name="range-radios" @value="50">
 				<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
 				<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
 			</image-compare-nojs>
-			<h3>After JavaScript <button type="submit">Form Submit</button></h3>
 		</form>
 	</is-land>
 </div>
@@ -206,12 +262,21 @@ layout: layout.webc
 
 <p>For fun you can change <code>clip-path: inset(0 0 0 var(--position));</code> to <code>opacity: var(--position);</code> on any of these components to have the slider vary opacity instead of clip amount.</p>
 
+<template webc:type="render">
+function() {
+	return this.helpers.highlight("html", `<image-compare-defined @name="range-opacity" @value="50">
+	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async" style="clip-path: none; opacity: var(--position);">
+	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
+</image-compare-defined>`);
+}
+</template>
+
 <is-land on:visible on:idle>
 	<form method="get">
+		<h3>After JavaScript <button type="submit">Form Submit</button></h3>
 		<image-compare-defined @name="range-opacity" @value="50">
 			<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async" style="clip-path: none; opacity: var(--position);">
 			<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
 		</image-compare-defined>
-		<h3>After JavaScript <button type="submit">Form Submit</button></h3>
 	</form>
 </is-land>
