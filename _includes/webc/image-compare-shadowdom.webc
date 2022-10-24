@@ -31,7 +31,7 @@
 
 		<div class="slider">
 			<label :for="uid + '-slider'">How much of the image do you want to be hidden?</label>
-			<input type="range" :value="value" :aria-controls="uid" :id="uid + '-slider'" disabled>
+			<input type="range" :name="name" :value="value" :aria-controls="uid" :id="uid + '-slider'" disabled>
 		</div>
 
 		<slot webc:keep></slot>

@@ -4,7 +4,7 @@
 			<label :for="uid + '-slider'" class="visually-hidden">
 				How much of the image do you want to be hidden?
 			</label>
-			<input type="range" :value="value" :aria-controls="uid" :id="uid + '-slider'">
+			<input type="range" :name="name" :value="value" :aria-controls="uid" :id="uid + '-slider'">
 		</div>
 	</template>
 	<slot>Don’t forget the images!</slot>
@@ -13,7 +13,7 @@
 		<script webc:type="render" webc:is="template">
 		function() {
 			let radios = [];
-			let name = `${this.uid}-slider`;
+			let name = this.name || `${this.uid}-slider`;
 			let incrementBy = 25;
 			let selectedIndex = Math.floor(this.value / incrementBy) * incrementBy;
 

@@ -3,7 +3,7 @@
 		<label :for="uid + '-slider'" class="visually-hidden">
 			How much of the image do you want to be hidden?
 		</label>
-		<input type="range" :value="value" :aria-controls="uid" :id="uid + '-slider'">
+		<input type="range" :name="name" :value="value" :aria-controls="uid" :id="uid + '-slider'">
 	</div>
 	<slot>Don’t forget the images!</slot>
 </template>
