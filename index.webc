@@ -4,6 +4,7 @@ layout: layout.webc
 <h1>WebC</h1>
 
 <p>The examples below are in order of implementation complexity from least to most. All are using <a href="https://www.11ty.dev/docs/plugins/partial-hydration/"><code>&lt;is-land&gt;</code></a> to initialize on visible.</p>
+<p>Return to the [GitHub repository](https://github.com/11ty/demo-webc-image-compare).</p>
 
 <h2>Disabled</h2>
 <p><strong>Complexity Level: Low.</strong> This version goes from disabled to enabled range input.</p>
