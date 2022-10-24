@@ -33,7 +33,7 @@ layout: layout.webc
 </is-land>
 
 <h2>Shadow DOM</h2>
-<p><strong>Complexity Level: High.</strong> This version uses a declarative Shadow DOM template for the range input: pre-JS it is hidden when DSM is not supported and disabled when DSM is supported.</p>
+<p><strong>Complexity Level: Moderate.</strong> This version uses a declarative Shadow DOM template for the range input: pre-JS it is hidden when DSM is not supported and disabled when DSM is supported.</p>
 <is-land on:visible on:idle>
 	<image-compare-shadowdom @value="40">
 		<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
@@ -42,7 +42,7 @@ layout: layout.webc
 </is-land>
 
 <h2>:has() and Radios</h2>
-<p><strong>Complexity Level: High.</strong> This version uses <code>:has</code> and radios for a functional No-JS experience (and even synchronizes the value pre-JS and post-JS).</p>
+<p><strong>Complexity Level: Moderate.</strong> This version uses <code>:has</code> and radios for a functional No-JS experience (and even synchronizes the value pre-JS and post-JS).</p>
 <is-land on:visible on:idle>
 	<image-compare-nojs @value="80">
 		<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
