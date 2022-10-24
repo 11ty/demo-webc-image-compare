@@ -60,7 +60,7 @@
 <style @html="`#${uid} { --position: ${value}%; }`"></style>
 
 <script>
-window.customElements.define("image-compare-shadowdom", class extends HTMLElement {
+customElements.define("image-compare-shadowdom", class extends HTMLElement {
 	connectedCallback() {
 		// Polyfill Declarative Shadow Root
 		let root = this.shadowRoot;

@@ -42,7 +42,7 @@
 <style @html="`#${uid} { --position: ${value}%; }`"></style>
 
 <script>
-window.customElements.define("image-compare-hidden", class extends HTMLElement {
+customElements.define("image-compare-hidden", class extends HTMLElement {
 	connectedCallback() {
 		let tmpl = this.querySelector(":scope template");
 		tmpl.replaceWith(tmpl.content);

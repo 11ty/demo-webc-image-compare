@@ -43,7 +43,7 @@
 <style @html="`#${uid} { --position: ${value}%; }`"></style>
 
 <script>
-window.customElements.define("image-compare-defined", class extends HTMLElement {
+customElements.define("image-compare-defined", class extends HTMLElement {
 	connectedCallback() {
 		this.range = this.querySelector(":scope input[type='range']");
 		this.range.removeAttribute("disabled");
