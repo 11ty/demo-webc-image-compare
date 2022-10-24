@@ -8,7 +8,7 @@ layout: layout.webc
 <h2>Disabled</h2>
 <p><strong>Complexity Level: Low.</strong> This version goes from disabled to enabled range input.</p>
 <is-land on:visible on:idle>
-	<image-compare-disabled @value="60">
+	<image-compare-disabled @value="50">
 		<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
 		<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
 	</image-compare-disabled>
@@ -18,7 +18,7 @@ layout: layout.webc
 
 <p><strong>Complexity Level: Low.</strong> This version uses CSS <code>:not(:defined)</code> to hide the range input before JS.</p>
 <is-land on:visible on:idle>
-	<image-compare-defined @value="20">
+	<image-compare-defined @value="50">
 		<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
 		<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
 	</image-compare-defined>
@@ -26,7 +26,7 @@ layout: layout.webc
 
 <p><strong>Complexity Level: Low.</strong> This version uses a <code>&lt;template&gt;</code> to hide the range input before JS.</p>
 <is-land on:visible on:idle>
-	<image-compare @value="20">
+	<image-compare @value="50">
 		<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
 		<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
 	</image-compare>
@@ -35,7 +35,7 @@ layout: layout.webc
 <h2>Shadow DOM</h2>
 <p><strong>Complexity Level: Moderate.</strong> This version uses a declarative Shadow DOM template for the range input: pre-JS it is hidden when DSM is not supported and disabled when DSM is supported.</p>
 <is-land on:visible on:idle>
-	<image-compare-shadowdom @value="40">
+	<image-compare-shadowdom @value="50">
 		<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
 		<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
 	</image-compare-shadowdom>
@@ -44,7 +44,7 @@ layout: layout.webc
 <h2>:has() and Radios</h2>
 <p><strong>Complexity Level: Moderate.</strong> This version uses <code>:has</code> and radios for a functional No-JS experience (and even synchronizes the value pre-JS and post-JS).</p>
 <is-land on:visible on:idle>
-	<image-compare-nojs @value="80">
+	<image-compare-nojs @value="50">
 		<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" decoding="async">
 		<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy" decoding="async">
 	</image-compare-nojs>

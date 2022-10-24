@@ -14,7 +14,7 @@
 		function() {
 			let radios = [];
 			let name = `${this.uid}-slider`;
-			let incrementBy = 20;
+			let incrementBy = 25;
 			let selectedIndex = Math.floor(this.value / incrementBy) * incrementBy;
 
 			for(let j = 0, k = 100; j<=k; j+=incrementBy) {
@@ -85,8 +85,9 @@ ${j}%
 
 <script webc:type="render" webc:is="style" webc:scoped>
 function() {
+	let incrementBy = 25;
 	let styles = [];
-	for(let j = 0, k = 100; j<=k; j+=20) {
+	for(let j = 0, k = 100; j<=k; j+=incrementBy) {
 		let id = `${this.uid}_${j}`;
 		styles.push(`:host:has(#${id}:checked) {
 	--position: ${j}%;
