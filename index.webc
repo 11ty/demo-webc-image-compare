@@ -27,7 +27,8 @@ layout: layout.webc
 
 <template webc:type="render">
 function() {
-	return this.helpers.highlight("html", `<image-compare-enabled @name="range-enabled" @value="50">
+	return this.helpers.highlight("html", `<!-- WebC Component HTML -->
+<image-compare-enabled @name="range-enabled" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
 	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy">
 </image-compare-enabled>`);
@@ -67,7 +68,8 @@ function() {
 
 <template webc:type="render">
 function() {
-	return this.helpers.highlight("html", `<image-compare-disabled @name="range-disabled" @value="50">
+	return this.helpers.highlight("html", `<!-- WebC Component HTML -->
+<image-compare-disabled @name="range-disabled" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
 	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy">
 </image-compare-disabled>`);
@@ -106,7 +108,8 @@ function() {
 
 <template webc:type="render">
 function() {
-	return this.helpers.highlight("html", `<image-compare-defined @name="range-hidden" @value="50">
+	return this.helpers.highlight("html", `<!-- WebC Component HTML -->
+<image-compare-defined @name="range-hidden" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
 	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy">
 </image-compare-defined>`);
@@ -145,7 +148,8 @@ function() {
 
 <template webc:type="render">
 function() {
-	return this.helpers.highlight("html", `<image-compare-hidden @name="range-hiddentmpl" @value="50">
+	return this.helpers.highlight("html", `<!-- WebC Component HTML -->
+<image-compare-hidden @name="range-hiddentmpl" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
 	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy">
 </image-compare-hidden>`);
@@ -187,7 +191,8 @@ function() {
 
 <template webc:type="render">
 function() {
-	return this.helpers.highlight("html", `<image-compare-shadowdom @name="range-shadowdom" @value="50">
+	return this.helpers.highlight("html", `<!-- WebC Component HTML -->
+<image-compare-shadowdom @name="range-shadowdom" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
 	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy">
 </image-compare-shadowdom>`);
@@ -230,7 +235,8 @@ function() {
 
 <template webc:type="render">
 function() {
-	return this.helpers.highlight("html", `<image-compare-nojs @name="range-radios" @value="50">
+	return this.helpers.highlight("html", `<!-- WebC Component HTML -->
+<image-compare-nojs @name="range-radios" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
 	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy">
 </image-compare-nojs>`);
@@ -264,7 +270,8 @@ function() {
 
 <template webc:type="render">
 function() {
-	return this.helpers.highlight("html", `<image-compare-defined @name="range-opacity" @value="50">
+	return this.helpers.highlight("html", `<!-- WebC Component HTML -->
+<image-compare-defined @name="range-opacity" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" style="clip-path: none; opacity: var(--position);">
 	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy">
 </image-compare-defined>`);
