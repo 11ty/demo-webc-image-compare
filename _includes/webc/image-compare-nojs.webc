@@ -14,14 +14,14 @@
 		function() {
 			let radios = [];
 			let name = this.name || `${this.uid}-slider`;
-			let incrementBy = 25;
+			let incrementBy = 10;
 			let selectedIndex = Math.floor(this.value / incrementBy) * incrementBy;
 
 			for(let j = 0, k = 100; j<=k; j+=incrementBy) {
 				let id = `${this.uid}_${j}`;
 				radios.push(`<label for="${id}">
 <input type="radio" name="${name}" id="${id}" value="${j}" aria-controls="${this.uid}"${selectedIndex === j ? " checked" : ""}>
-${j}%
+<span class="visually-hidden">${j}%</span>
 </label>`);
 			}
 			return radios.join("");
@@ -86,7 +86,7 @@ ${j}%
 
 <script webc:type="render" webc:is="style" webc:scoped>
 function() {
-	let incrementBy = 25;
+	let incrementBy = 10;
 	let styles = [];
 	for(let j = 0, k = 100; j<=k; j+=incrementBy) {
 		let id = `${this.uid}_${j}`;

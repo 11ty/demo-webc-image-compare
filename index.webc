@@ -223,7 +223,7 @@ function() {
 
 <ul>
 	<li><strong>Complexity Level: Moderate</strong></li>
-	<li>This version uses <code>:has</code> and radios for a functional No-JS experience (and synchronizes the value pre-JS and post-JS).</li>
+	<li>This version uses <code>:has</code> and radios for a functional No-JS experience (and synchronizes the value pre-JS and post-JS). Of course, the number of radios shown can be customized.</li>
 	<li>If <code>:has()</code> is not supported (at time of writing, Firefox), the inputs are hidden (though you could modify this behavior to be Always Enabled and synchronized).</li>
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-nojs.webc">WebC source code</a></li>
 </ul>
