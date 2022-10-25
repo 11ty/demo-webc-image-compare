@@ -62,7 +62,7 @@ function() {
 <ul>
 	<li><strong>Complexity Level: Low</strong></li>
 	<li>This version uses JS to toggle the range input from disabled to enabled.</li>
-	<li>Disabling the control avoids the uncanny valley (in comparison to keeping it enabled) by communicating to the user that the control is not yet initialized.</p>
+	<li>Disabling the control avoids the uncanny valley (in comparison to keeping it enabled) by communicating to the user that the control is not yet initialized.</li>
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-disabled.webc">WebC source code</a></li>
 </ul>
 
