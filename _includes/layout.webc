@@ -30,12 +30,17 @@
 			font-size: 1.125em; /* 18px /16 */
 			border-radius: .5em;
 			border: 2px solid lightblue;
-		}
-		pre.language-html.language-html {
 			margin: 1em 0;
+			padding: 1em;
+			-moz-tab-size: 2;
+			-o-tab-size: 2;
+			tab-size: 2;
+			line-height: 1.2;
+			font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+			overflow: auto;
+			background-color: #f4f4f4;
 		}
 		</style>
-		<link rel="stylesheet" href="https://unpkg.com/prismjs@1.29.0/themes/prism.css">
 	</head>
 	<body>
 		<div @html="content" webc:nokeep></div>

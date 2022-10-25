@@ -8,6 +8,7 @@ layout: layout.webc
 <p>The examples below are in order of implementation complexity from least to most. All are using <a href="https://www.11ty.dev/docs/plugins/partial-hydration/"><code>is-land</code></a>, specifically <code>&lt;is-land on:idle on:visible&gt;</code>. The pre-JS experience is emulated using <code>&lt;is-land on:media="(max-width: 0px)"&gt;</code>.</p>
 
 <h2>Summary</h2>
+
 <ul>
 	<li>If you want to show both images pre-JS, this can be solved with an entirely clientside Image Comparison component but it will negatively impact your Content Layout Shift score. This use case is not shown below.</li>
 	<li>Do you want to show either the left or right image pre-JS? Use <code>@value="0"</code> or <code>@value="100"</code> respectively.</li>
@@ -15,6 +16,18 @@ layout: layout.webc
 	<li>If you want an interactive form control pre-JS and have it be functional too? See the <a href="#has-radios"><code>:has()</code> and Radios</a> approach.</li>
 	<li>Does this form input need to be a successful form control and submit to the server? The <a href="#dsd">ShadowDOM</a> example is the only one that doesn’t work with forms. This *could* be fixed with JS but is it worth it?</li>
 </ul>
+
+<h2>Table of Contents</h2>
+
+<ol>
+	<li><a href="#enabled">Always Enabled</a></li>
+	<li><a href="#disabled">Disabled until JavaScript</a></li>
+	<li><a href="#hidden-css">Hidden via <code>:not(:defined)</code> CSS</a></li>
+	<li><a href="#hidden-tmpl">Hidden via JS <code>&lt;template&gt;</code></a></li>
+	<li><a href="#dsd">Declarative Shadow DOM</a></li>
+	<li><a href="#has-radios"><code>:has()</code> and Radios</a></li>
+	<li><a href="#opacity">Bonus: <code>opacity</code> Slider</a></li>
+</ol>
 
 <h2 id="enabled">Always Enabled</h2>
 
