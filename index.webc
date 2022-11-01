@@ -1,5 +1,7 @@
 ---
 layout: layout.webc
+webc:
+  components: "./node_modules/@11ty/eleventy-plugin-syntaxhighlight/syntax-highlight.webc"
 ---
 <h1>Progressive Enhancement Recipes using Eleventy WebC Image Comparison Components</h1>
 
@@ -40,15 +42,13 @@ layout: layout.webc
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-enabled.webc">WebC source code</a></li>
 </ul>
 
-<script webc:type="render" webc:is="template">
-function() {
-	return this.helpers.highlight("html", `<!-- WebC Component HTML -->
+<syntax-highlight language="html">
+<!-- WebC Component HTML -->
 <image-compare-enabled @name="range-enabled" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
 	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy">
-</image-compare-enabled>`);
-}
-</script>	
+</image-compare-enabled>
+</syntax-highlight>
 
 <div class="columns">
 	<is-land on:media="(max-width: 0px)">
@@ -81,15 +81,13 @@ function() {
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-disabled.webc">WebC source code</a></li>
 </ul>
 
-<script webc:type="render" webc:is="template">
-function() {
-	return this.helpers.highlight("html", `<!-- WebC Component HTML -->
+<syntax-highlight language="html">
+<!-- WebC Component HTML -->
 <image-compare-disabled @name="range-disabled" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
 	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy">
-</image-compare-disabled>`);
-}
-</script>
+</image-compare-disabled>
+</syntax-highlight>
 
 <div class="columns">
 	<is-land on:media="(max-width: 0px)">
@@ -121,15 +119,13 @@ function() {
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-defined.webc">WebC source code</a></li>
 </ul>
 
-<script webc:type="render" webc:is="template">
-function() {
-	return this.helpers.highlight("html", `<!-- WebC Component HTML -->
+<syntax-highlight language="html">
+<!-- WebC Component HTML -->
 <image-compare-defined @name="range-hidden" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
 	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy">
-</image-compare-defined>`);
-}
-</script>
+</image-compare-defined>
+</syntax-highlight>
 
 <div class="columns">
 	<is-land on:media="(max-width: 0px)">
@@ -160,15 +156,13 @@ function() {
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-hidden.webc">WebC source code</a></li>
 </ul>
 
-<script webc:type="render" webc:is="template">
-function() {
-	return this.helpers.highlight("html", `<!-- WebC Component HTML -->
+<syntax-highlight language="html">
+<!-- WebC Component HTML -->
 <image-compare-hidden @name="range-hiddentmpl" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
 	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy">
-</image-compare-hidden>`);
-}
-</script>
+</image-compare-hidden>
+</syntax-highlight>
 
 <div class="columns">
 	<is-land on:media="(max-width: 0px)">
@@ -203,15 +197,13 @@ function() {
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-shadowdom.webc">WebC source code</a></li>
 </ul>
 
-<script webc:type="render" webc:is="template">
-function() {
-	return this.helpers.highlight("html", `<!-- WebC Component HTML -->
+<syntax-highlight language="html">
+<!-- WebC Component HTML -->
 <image-compare-shadowdom @name="range-shadowdom" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
 	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy">
-</image-compare-shadowdom>`);
-}
-</script>
+</image-compare-shadowdom>
+</syntax-highlight>
 
 <div class="columns">
 	<is-land on:visible on:idle>
@@ -247,15 +239,13 @@ function() {
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-nojs.webc">WebC source code</a></li>
 </ul>
 
-<script webc:type="render" webc:is="template">
-function() {
-	return this.helpers.highlight("html", `<!-- WebC Component HTML -->
+<syntax-highlight language="html">
+<!-- WebC Component HTML -->
 <image-compare-nojs @name="range-radios" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
 	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy">
-</image-compare-nojs>`);
-}
-</script>
+</image-compare-nojs>
+</syntax-highlight>
 
 <div class="columns">
 	<is-land on:media="(max-width: 0px)">
@@ -282,15 +272,13 @@ function() {
 
 <p>For fun you can change <code>clip-path: inset(0 0 0 var(--position));</code> to <code>opacity: var(--position);</code> on any of these components to have the slider vary opacity instead of clip amount.</p>
 
-<script webc:type="render" webc:is="template">
-function() {
-	return this.helpers.highlight("html", `<!-- WebC Component HTML -->
+<syntax-highlight language="html">
+<!-- WebC Component HTML -->
 <image-compare-defined @name="range-opacity" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" style="clip-path: none; opacity: var(--position);">
 	<img src="/javaskipped-b.png" alt="JavaSkipped logo right" width="800" height="800" loading="lazy">
-</image-compare-defined>`);
-}
-</script>
+</image-compare-defined>
+</syntax-highlight>
 
 <is-land on:visible on:idle>
 	<form method="get">
