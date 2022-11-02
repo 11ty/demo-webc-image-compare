@@ -1,7 +1,5 @@
 ---
 layout: layout.webc
-webc:
-  components: "./node_modules/@11ty/eleventy-plugin-syntaxhighlight/syntax-highlight.webc"
 ---
 <h1>Progressive Enhancement Recipes using Eleventy WebC Image Comparison Components</h1>
 
@@ -42,7 +40,7 @@ webc:
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-enabled.webc">WebC source code</a></li>
 </ul>
 
-<syntax-highlight language="html">
+<syntax-highlight language="html" webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight">
 <!-- WebC Component HTML -->
 <image-compare-enabled @name="range-enabled" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
@@ -81,7 +79,7 @@ webc:
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-disabled.webc">WebC source code</a></li>
 </ul>
 
-<syntax-highlight language="html">
+<syntax-highlight language="html" webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight">
 <!-- WebC Component HTML -->
 <image-compare-disabled @name="range-disabled" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
@@ -119,7 +117,7 @@ webc:
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-defined.webc">WebC source code</a></li>
 </ul>
 
-<syntax-highlight language="html">
+<syntax-highlight language="html" webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight">
 <!-- WebC Component HTML -->
 <image-compare-defined @name="range-hidden" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
@@ -156,7 +154,7 @@ webc:
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-hidden.webc">WebC source code</a></li>
 </ul>
 
-<syntax-highlight language="html">
+<syntax-highlight language="html" webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight">
 <!-- WebC Component HTML -->
 <image-compare-hidden @name="range-hiddentmpl" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
@@ -197,7 +195,7 @@ webc:
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-shadowdom.webc">WebC source code</a></li>
 </ul>
 
-<syntax-highlight language="html">
+<syntax-highlight language="html" webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight">
 <!-- WebC Component HTML -->
 <image-compare-shadowdom @name="range-shadowdom" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
@@ -239,7 +237,7 @@ webc:
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-nojs.webc">WebC source code</a></li>
 </ul>
 
-<syntax-highlight language="html">
+<syntax-highlight language="html" webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight">
 <!-- WebC Component HTML -->
 <image-compare-nojs @name="range-radios" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
@@ -272,7 +270,7 @@ webc:
 
 <p>For fun you can change <code>clip-path: inset(0 0 0 var(--position));</code> to <code>opacity: var(--position);</code> on any of these components to have the slider vary opacity instead of clip amount.</p>
 
-<syntax-highlight language="html">
+<syntax-highlight language="html" webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight">
 <!-- WebC Component HTML -->
 <image-compare-defined @name="range-opacity" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" style="clip-path: none; opacity: var(--position);">
