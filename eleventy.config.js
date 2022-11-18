@@ -3,9 +3,7 @@ const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 
 module.exports = function(eleventyConfig) {
 	eleventyConfig.addPlugin(syntaxHighlight);
-	eleventyConfig.addPlugin(pluginWebc, {
-		components: "_includes/webc/*.webc"
-	});
+	eleventyConfig.addPlugin(pluginWebc);
 
 	eleventyConfig.setServerPassthroughCopyBehavior("copy");
 	eleventyConfig.addPassthroughCopy({

@@ -25,9 +25,9 @@
   "bugs": "https://github.com/11ty/demo-webc-image-compare/issues",
   "license": "MIT",
   "dependencies": {
-    "@11ty/eleventy": "^2.0.0-canary.16",
+    "@11ty/eleventy": "^2.0.0-canary.17",
     "@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0",
-    "@11ty/eleventy-plugin-webc": "^0.6.0",
-    "@11ty/is-land": "^2.0.3"
+    "@11ty/eleventy-plugin-webc": "^0.7.0",
+    "@11ty/is-land": "^3.0.0"
   }
 }
