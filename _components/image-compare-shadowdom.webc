@@ -1,5 +1,5 @@
 <template webc:root :id="uid" aria-label="Compare two images">
-	<template shadowroot="open">
+	<template shadowrootmode="open">
 		<style webc:keep>
 		input[type='range'] {
 			width: 100%;
@@ -64,7 +64,7 @@ customElements.define("image-compare-shadowdom", class extends HTMLElement {
 		// Polyfill Declarative Shadow Root
 		let root = this.shadowRoot;
 		if(!this.shadowRoot) {
-			let tmpl = this.querySelector(":scope > template[shadowroot]");
+			let tmpl = this.querySelector(":scope > template[shadowrootmode]");
 			root = this.attachShadow({ mode: "open" });
 			root.appendChild(tmpl.content.cloneNode(true));
 		}
