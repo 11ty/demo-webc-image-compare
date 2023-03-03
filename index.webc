@@ -49,6 +49,7 @@ layout: layout.webc
 </syntax-highlight>
 
 <div class="columns" webc:bucket="compare-enabled">
+	<!-- Here the do not want to lazy load the CSS or put a JS requirement on the CSS -->
 	<style webc:keep @raw="getBundle('css', 'compare-enabled')"></style>
 	<!-- <link rel="stylesheet" webc:keep :href="getBundleFileUrl('css', 'compare-enabled')" fetchpriority="low"> -->
 
@@ -95,6 +96,7 @@ layout: layout.webc
 </syntax-highlight>
 
 <div class="columns" webc:bucket="compare-disabled">
+	<!-- Here the do not want to lazy load the CSS or put a JS requirement on the CSS -->
 	<style webc:keep @raw="getBundle('css', 'compare-disabled')"></style>
 	<!-- <link rel="stylesheet" webc:keep :href="getBundleFileUrl('css', 'compare-disabled')" fetchpriority="low"> -->
 
@@ -140,6 +142,7 @@ layout: layout.webc
 </syntax-highlight>
 
 <div class="columns" webc:bucket="compare-defined">
+	<!-- Here the do not want to lazy load the CSS or put a JS requirement on the CSS -->
 	<style webc:keep @raw="getBundle('css', 'compare-defined')"></style>
 	<!-- <link rel="stylesheet" webc:keep :href="getBundleFileUrl('css', 'compare-defined')" fetchpriority="low"> -->
 
@@ -184,6 +187,7 @@ layout: layout.webc
 </syntax-highlight>
 
 <div class="columns" webc:bucket="compare-hidden">
+	<!-- Here the do not want to lazy load the CSS or put a JS requirement on the CSS -->
 	<style webc:keep @raw="getBundle('css', 'compare-hidden')"></style>
 	<!-- <link rel="stylesheet" webc:keep :href="getBundleFileUrl('css', 'compare-hidden')" fetchpriority="low"> -->
 
@@ -232,6 +236,7 @@ layout: layout.webc
 </syntax-highlight>
 
 <div class="columns" webc:bucket="compare-shadowdom">
+	<!-- Here the do not want to lazy load the CSS or put a JS requirement on the CSS -->
 	<style webc:keep @raw="getBundle('css', 'compare-shadowdom')"></style>
 	<!-- <link rel="stylesheet" webc:keep :href="getBundleFileUrl('css', 'compare-shadowdom')" fetchpriority="low"> -->
 
@@ -281,6 +286,7 @@ layout: layout.webc
 </syntax-highlight>
 
 <div class="columns" webc:bucket="compare-nojs">
+	<!-- Here the do not want to lazy load the CSS or put a JS requirement on the CSS -->
 	<style webc:keep @raw="getBundle('css', 'compare-nojs')"></style>
 	<!-- <link rel="stylesheet" webc:keep :href="getBundleFileUrl('css', 'compare-nojs')" fetchpriority="low"> -->
 
@@ -321,6 +327,7 @@ layout: layout.webc
 </syntax-highlight>
 
 <is-land on:visible webc:bucket="compare-defined">
+	<!-- Here the do not want to lazy load the CSS or put a JS requirement on the CSS -->
 	<style webc:keep @raw="getBundle('css', 'compare-defined')"></style>
 	<!-- <link rel="stylesheet" webc:keep :href="getBundleFileUrl('css', 'compare-defined')" fetchpriority="low"> -->
 
