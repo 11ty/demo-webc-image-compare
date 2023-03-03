@@ -7,7 +7,7 @@ layout: layout.webc
 
 <p><a href="https://www.11ty.dev/docs/languages/webc/">Learn more about WebC</a>.</p>
 
-<p>The examples below are in order of implementation complexity from least to most. All are using <a href="https://www.11ty.dev/docs/plugins/partial-hydration/"><code>is-land</code></a>, specifically <code>&lt;is-land on:idle on:visible&gt;</code>. The pre-JS experience is emulated using <code>&lt;is-land on:media="(max-width: 0px)"&gt;</code>.</p>
+<p>The examples below are in order of implementation complexity from least to most. All are using <a href="https://www.11ty.dev/docs/plugins/partial-hydration/"><code>is-land</code></a>, specifically <code>&lt;is-land on:visible&gt;</code>. The pre-JS experience is emulated using <code>&lt;is-land on:media="(max-width: 0px)"&gt;</code>.</p>
 
 <h2>Summary</h2>
 
@@ -40,7 +40,7 @@ layout: layout.webc
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-enabled.webc">WebC source code</a></li>
 </ul>
 
-<syntax-highlight language="html" webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight">
+<syntax-highlight language="html">
 <!-- WebC Component HTML -->
 <image-compare-enabled @name="range-enabled" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
@@ -48,7 +48,10 @@ layout: layout.webc
 </image-compare-enabled>
 </syntax-highlight>
 
-<div class="columns">
+<div class="columns" webc:bucket="compare-enabled">
+	<!-- swap to use <link rel="stylesheet" fetchpriority="low"> -->
+	<style webc:keep @raw="getBundle('css', 'compare-enabled')"></style>
+
 	<is-land on:media="(max-width: 0px)">
 		<form method="get">
 			<h3>Before JavaScript <button type="submit">Form Submit</button></h3>
@@ -59,7 +62,11 @@ layout: layout.webc
 		</form>
 	</is-land>
 
-	<is-land on:visible on:idle>
+	<is-land on:visible>
+		<template data-island="once">
+			<script type="module" webc:keep :src="getBundleFileUrl('js', 'compare-enabled')"></script>
+		</template>
+
 		<form method="get">
 			<h3>After JavaScript <button type="submit">Form Submit</button></h3>
 			<image-compare-enabled @name="range-enabled" @value="50">
@@ -79,7 +86,7 @@ layout: layout.webc
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-disabled.webc">WebC source code</a></li>
 </ul>
 
-<syntax-highlight language="html" webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight">
+<syntax-highlight language="html">
 <!-- WebC Component HTML -->
 <image-compare-disabled @name="range-disabled" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
@@ -87,7 +94,9 @@ layout: layout.webc
 </image-compare-disabled>
 </syntax-highlight>
 
-<div class="columns">
+<div class="columns" webc:bucket="compare-disabled">
+	<style webc:keep @raw="getBundle('css', 'compare-disabled')"></style>
+
 	<is-land on:media="(max-width: 0px)">
 		<form method="get">
 			<h3>Before JavaScript <button type="submit">Form Submit</button></h3>
@@ -98,7 +107,11 @@ layout: layout.webc
 		</form>
 	</is-land>
 
-	<is-land on:visible on:idle>
+	<is-land on:visible>
+		<template data-island="once">
+			<script type="module" webc:keep :src="getBundleFileUrl('js', 'compare-disabled')"></script>
+		</template>
+
 		<form method="get">
 			<h3>After JavaScript <button type="submit">Form Submit</button></h3>
 			<image-compare-disabled @name="range-disabled" @value="50">
@@ -117,7 +130,7 @@ layout: layout.webc
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-defined.webc">WebC source code</a></li>
 </ul>
 
-<syntax-highlight language="html" webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight">
+<syntax-highlight language="html">
 <!-- WebC Component HTML -->
 <image-compare-defined @name="range-hidden" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
@@ -125,7 +138,9 @@ layout: layout.webc
 </image-compare-defined>
 </syntax-highlight>
 
-<div class="columns">
+<div class="columns" webc:bucket="compare-defined">
+	<style webc:keep @raw="getBundle('css', 'compare-defined')"></style>
+
 	<is-land on:media="(max-width: 0px)">
 		<form method="get">
 			<h3>Before JavaScript <button type="submit">Form Submit</button></h3>
@@ -135,7 +150,11 @@ layout: layout.webc
 			</image-compare-defined>
 		</form>
 	</is-land>
-	<is-land on:visible on:idle>
+	<is-land on:visible>
+		<template data-island="once">
+			<script type="module" webc:keep :src="getBundleFileUrl('js', 'compare-defined')"></script>
+		</template>
+
 		<form method="get">
 			<h3>After JavaScript <button type="submit">Form Submit</button></h3>
 			<image-compare-defined @name="range-hidden" @value="50">
@@ -154,7 +173,7 @@ layout: layout.webc
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-hidden.webc">WebC source code</a></li>
 </ul>
 
-<syntax-highlight language="html" webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight">
+<syntax-highlight language="html">
 <!-- WebC Component HTML -->
 <image-compare-hidden @name="range-hiddentmpl" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
@@ -162,7 +181,9 @@ layout: layout.webc
 </image-compare-hidden>
 </syntax-highlight>
 
-<div class="columns">
+<div class="columns" webc:bucket="compare-hidden">
+	<style webc:keep @raw="getBundle('css', 'compare-hidden')"></style>
+
 	<is-land on:media="(max-width: 0px)">
 		<form method="get">
 			<h3>Before JavaScript <button type="submit">Form Submit</button></h3>
@@ -172,7 +193,11 @@ layout: layout.webc
 			</image-compare-hidden>
 		</form>
 	</is-land>
-	<is-land on:visible on:idle>
+	<is-land on:visible>
+		<template data-island="once">
+			<script type="module" webc:keep :src="getBundleFileUrl('js', 'compare-hidden')"></script>
+		</template>
+
 		<form method="get">
 			<h3>After JavaScript <button type="submit">Form Submit</button></h3>
 			<image-compare-hidden @name="range-hiddentmpl" @value="50">
@@ -195,7 +220,7 @@ layout: layout.webc
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-shadowdom.webc">WebC source code</a></li>
 </ul>
 
-<syntax-highlight language="html" webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight">
+<syntax-highlight language="html">
 <!-- WebC Component HTML -->
 <image-compare-shadowdom @name="range-shadowdom" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
@@ -203,8 +228,10 @@ layout: layout.webc
 </image-compare-shadowdom>
 </syntax-highlight>
 
-<div class="columns">
-	<is-land on:visible on:idle>
+<div class="columns" webc:bucket="compare-shadowdom">
+	<style webc:keep @raw="getBundle('css', 'compare-shadowdom')"></style>
+
+	<is-land on:visible>
 		<form method="get">
 			<h3>Before JavaScript <button type="submit">Form Submit**</button></h3>
 			<!-- We use a one-off disabled attribute here to simulate pre-JS, is-land component renaming was messing with DSD -->
@@ -215,7 +242,11 @@ layout: layout.webc
 			**Form submit is not successful.
 		</form>
 	</is-land>
-	<is-land on:visible on:idle>
+
+	<is-land on:visible>
+		<template data-island="once">
+			<script type="module" webc:keep :src="getBundleFileUrl('js', 'compare-shadowdom')"></script>
+		</template>
 		<form method="get">
 			<h3>After JavaScript <button type="submit">Form Submit**</button></h3>
 			<image-compare-shadowdom @name="range-shadowdom" @value="50">
@@ -237,7 +268,7 @@ layout: layout.webc
 	<li><a href="https://github.com/11ty/demo-webc-image-compare/blob/main/_includes/webc/image-compare-nojs.webc">WebC source code</a></li>
 </ul>
 
-<syntax-highlight language="html" webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight">
+<syntax-highlight language="html">
 <!-- WebC Component HTML -->
 <image-compare-nojs @name="range-radios" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy">
@@ -245,7 +276,8 @@ layout: layout.webc
 </image-compare-nojs>
 </syntax-highlight>
 
-<div class="columns">
+<div class="columns" webc:bucket="compare-nojs">
+	<style webc:keep @raw="getBundle('css', 'compare-nojs')"></style>
 	<is-land on:media="(max-width: 0px)">
 		<form method="get">
 			<h3>Before JavaScript <button type="submit">Form Submit</button></h3>
@@ -255,7 +287,11 @@ layout: layout.webc
 			</image-compare-nojs>
 		</form>
 	</is-land>
-	<is-land on:visible on:idle>
+	
+	<is-land on:visible>
+		<template data-island="once">
+			<script type="module" webc:keep :src="getBundleFileUrl('js', 'compare-nojs')"></script>
+		</template>
 		<form method="get">
 			<h3>After JavaScript <button type="submit">Form Submit</button></h3>
 			<image-compare-nojs @name="range-radios" @value="50">
@@ -270,7 +306,7 @@ layout: layout.webc
 
 <p>For fun you can change <code>clip-path: inset(0 0 0 var(--position));</code> to <code>opacity: var(--position);</code> on any of these components to have the slider vary opacity instead of clip amount.</p>
 
-<syntax-highlight language="html" webc:import="npm:@11ty/eleventy-plugin-syntaxhighlight">
+<syntax-highlight language="html">
 <!-- WebC Component HTML -->
 <image-compare-defined @name="range-opacity" @value="50">
 	<img src="/javaskipped-a.png" alt="JavaSkipped logo left" width="800" height="800" loading="lazy" style="clip-path: none; opacity: var(--position);">
@@ -278,7 +314,13 @@ layout: layout.webc
 </image-compare-defined>
 </syntax-highlight>
 
-<is-land on:visible on:idle>
+<is-land on:visible webc:bucket="compare-defined">
+	<style webc:keep @raw="getBundle('css', 'compare-defined')"></style>
+
+	<template data-island="once">
+		<script type="module" webc:keep :src="getBundleFileUrl('js', 'compare-defined')"></script>
+	</template>
+
 	<form method="get">
 		<h3>After JavaScript <button type="submit">Form Submit</button></h3>
 		<image-compare-defined @name="range-opacity" @value="50">
